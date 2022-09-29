@@ -1821,6 +1821,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_checkTextInputs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/checkTextInputs */ "./src/js/modules/checkTextInputs.js");
 /* harmony import */ var _modules_showMoreStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/showMoreStyles */ "./src/js/modules/showMoreStyles.js");
 /* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calc */ "./src/js/modules/calc.js");
+/* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/filter */ "./src/js/modules/filter.js");
+
 
 
 
@@ -1840,6 +1842,7 @@ window.addEventListener('DOMContentLoaded', () => {
   Object(_modules_checkTextInputs__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="message"]');
   Object(_modules_showMoreStyles__WEBPACK_IMPORTED_MODULE_5__["default"])('.button-styles', '#styles .row');
   Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price');
+  Object(_modules_filter__WEBPACK_IMPORTED_MODULE_7__["default"])();
 });
 
 /***/ }),
@@ -1904,6 +1907,62 @@ const checkTextInputs = selector => {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (checkTextInputs);
+
+/***/ }),
+
+/***/ "./src/js/modules/filter.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/filter.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const filter = () => {
+  const menu = document.querySelector('.portfolio-menu');
+  const items = menu.querySelectorAll('li');
+  const wrapper = document.querySelector('.portfolio-wrapper');
+  const markAll = wrapper.querySelectorAll('.all');
+  const no = document.querySelector('.portfolio-no');
+
+  const typeFilter = markType => {
+    markAll.forEach(mark => {
+      mark.style.display = 'none';
+      mark.classList.remove('animated', 'fadeIn');
+    });
+    no.style.display = 'none';
+    no.classList.remove('animated', 'fadeIn');
+
+    if (markType) {
+      markType.forEach(mark => {
+        mark.style.display = 'block';
+        mark.classList.add('animated', 'fadeIn');
+      });
+    }
+
+    if (markType.length == 0) {
+      no.style.display = 'block';
+      no.classList.add('animated', 'fadeIn');
+    }
+  };
+
+  menu.addEventListener('click', e => {
+    let classSelect = e.target.classList[0];
+    let allElems = wrapper.querySelectorAll(`.${classSelect}`);
+    typeFilter(allElems);
+  });
+  menu.addEventListener('click', e => {
+    let target = e.target;
+
+    if (target && target.tagName === 'LI') {
+      items.forEach(btn => btn.classList.remove('active'));
+      target.classList.add('active');
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (filter);
 
 /***/ }),
 
