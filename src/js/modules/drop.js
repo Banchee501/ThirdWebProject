@@ -1,12 +1,4 @@
 const drop = () => {
-    // drag *
-    // dragend *
-    // dragenter - объект над dropArea
-    // dragexit *
-    // dragleave - объект за пределами dropArea
-    // dragover - объект зависает над dropArea
-    // dragstart *
-    // drop - объект отправлен в dropArea
 
     const fileInputs = document.querySelectorAll('[name="upload"]');
 
